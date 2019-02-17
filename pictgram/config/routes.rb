@@ -17,4 +17,7 @@ Rails.application.routes.draw do
 
   delete '/topics', to: 'topics#destroy'
 
+  get 'posts/index'
+  get 'comments/new'
+
 end

@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.all.includes(:favorite_users)
+    @topics = Topic.all.includes(:favorite_users) #includeメソッドは指定したモデルのデータを一括でキャッシュ「N+1問題」防ぐ
   end
 
   def new
@@ -19,6 +19,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
+    @topic = Topic.find_by(params[:topic_id]) 
     @topic.destroy
     redirect_to topics_path, notice: "画像を削除しました"
   end
